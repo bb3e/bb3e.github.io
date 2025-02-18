@@ -5,7 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Forgiveness Game</title>
   <style>
-    /* Basic styles for the body */
     body {
       display: flex;
       justify-content: center;
@@ -15,49 +14,31 @@
       margin: 0;
       font-family: Arial, sans-serif;
     }
-
-    /* Container for centering the content */
     .container {
       text-align: center;
-      position: relative;
-      width: 400px; /* Set a fixed width to contain buttons */
-      height: 100px; /* Ensure enough space for both buttons */
     }
-
-    /* Common button styles */
     button {
       font-size: 18px;
       padding: 15px 25px;
+      margin: 10px;
       border: none;
       cursor: pointer;
-      border-radius: 5px;
-      transition: transform 0.3s ease;
-      position: absolute; /* Positioning buttons absolutely */
     }
-
-    /* Yes button style */
     #yesBtn {
       background-color: #4CAF50;
       color: white;
-      left: 0px; /* Initial position of Yes button */
-      top: 20px;  /* Initial position of Yes button */
     }
-
-    /* No button style */
     #noBtn {
       background-color: #f44336;
       color: white;
-      left: 200px; /* Initial position of No button */
-      top: 20px;  /* Initial position of No button */
     }
-
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>haha i miss you please forgive me?</h1>
-    <button id="yesBtn">yes of course i will, you're the best!</button>
+    <h1>haha i miss you, please forgive me</h1>
+    <button id="yesBtn">yes ofc i will!</button>
     <button id="noBtn">no >:(</button>
   </div>
 
@@ -65,31 +46,29 @@
     let noBtn = document.getElementById("noBtn");
     let yesBtn = document.getElementById("yesBtn");
 
-    let swapping = true; // Flag to control swapping
+    let swapping = true;
 
-    // Function to swap positions of the "Yes" and "No" buttons
+    // Function to swap positions of "yes" and "no" buttons
     function swapPositions() {
-      // Get current positions of both buttons (left position)
-      let yesBtnLeft = yesBtn.style.left;
-      let noBtnLeft = noBtn.style.left;
-
-      // Swap positions by changing the 'left' style properties
-      yesBtn.style.left = noBtnLeft;
-      noBtn.style.left = yesBtnLeft;
+      let tempX = noBtn.style.left;
+      let tempY = noBtn.style.top;
+      noBtn.style.left = yesBtn.style.left;
+      noBtn.style.top = yesBtn.style.top;
+      yesBtn.style.left = tempX;
+      yesBtn.style.top = tempY;
     }
 
-    // When "No" button is clicked, swap positions
     noBtn.addEventListener("click", () => {
       if (swapping) {
-        swapPositions(); // Swap positions when "No" is clicked
+        swapPositions(); // Swap positions every time the "no" button is clicked
       }
     });
 
-    // When "Yes" button is clicked, stop swapping and show alert
     yesBtn.addEventListener("click", () => {
       alert("haha thanks for forgiving me, text me? 0423163776 *wink wink*");
-      swapping = false; // Stop swapping after "Yes" is clicked
+      swapping = false; // Stop swapping once "yes" is clicked
     });
   </script>
 </body>
 </html>
+
