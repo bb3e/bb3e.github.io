@@ -15,9 +15,8 @@
       font-family: Arial, sans-serif;
     }
     .container {
-      position: relative; /* Set relative positioning for the container */
       text-align: center;
-      width: 300px; /* Define a fixed width for better control */
+      position: relative; /* Added to enable positioning of child elements */
     }
     button {
       font-size: 18px;
@@ -25,19 +24,19 @@
       margin: 10px;
       border: none;
       cursor: pointer;
-      position: absolute; /* Use absolute positioning for buttons */
+      position: absolute; /* Changed to absolute for positioning */
     }
     #yesBtn {
       background-color: #4CAF50;
       color: white;
-      left: 0; /* Initial position for yes button */
-      top: 0; /* Initial position for yes button */
+      left: 0; /* Set initial position */
+      top: 0; /* Set initial position */
     }
     #noBtn {
       background-color: #f44336;
       color: white;
-      left: 100px; /* Initial position for no button */
-      top: 0; /* Initial position for no button */
+      left: 100px; /* Set initial position */
+      top: 0; /* Set initial position */
     }
   </style>
 </head>
@@ -57,15 +56,15 @@
 
     // Function to swap positions of "yes" and "no" buttons
     function swapPositions() {
-      if (swapping) {
-        const yesBtnLeft = yesBtn.style.left;
-        yesBtn.style.left = noBtn.style.left;
-        noBtn.style.left = yesBtnLeft;
-      }
+      let yesBtnPosition = yesBtn.style.left;
+      yesBtn.style.left = noBtn.style.left;
+      noBtn.style.left = yesBtnPosition;
     }
 
     noBtn.addEventListener("click", () => {
-      swapPositions(); // Swap positions every time the "no" button is clicked
+      if (swapping) {
+        swapPositions(); // Swap positions every time the "no" button is clicked
+      }
     });
 
     yesBtn.addEventListener("click", () => {
