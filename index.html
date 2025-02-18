@@ -16,7 +16,6 @@
     }
     .container {
       text-align: center;
-      position: relative; /* Added to enable positioning of child elements */
     }
     button {
       font-size: 18px;
@@ -24,19 +23,17 @@
       margin: 10px;
       border: none;
       cursor: pointer;
-      position: absolute; /* Changed to absolute for positioning */
     }
     #yesBtn {
       background-color: #4CAF50;
       color: white;
-      left: 0; /* Set initial position */
-      top: 0; /* Set initial position */
     }
     #noBtn {
       background-color: #f44336;
       color: white;
-      left: 100px; /* Set initial position */
-      top: 0; /* Set initial position */
+    }
+    .swapped {
+      float: right;
     }
   </style>
 </head>
@@ -56,9 +53,8 @@
 
     // Function to swap positions of "yes" and "no" buttons
     function swapPositions() {
-      let yesBtnPosition = yesBtn.style.left;
-      yesBtn.style.left = noBtn.style.left;
-      noBtn.style.left = yesBtnPosition;
+      yesBtn.classList.toggle('swapped');
+      noBtn.classList.toggle('swapped');
     }
 
     noBtn.addEventListener("click", () => {
