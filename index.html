@@ -13,7 +13,6 @@
       background-color: #f0f0f0;
       margin: 0;
       font-family: Arial, sans-serif;
-      position: relative;
     }
     .container {
       text-align: center;
@@ -33,87 +32,41 @@
       background-color: #f44336;
       color: white;
     }
-    .no-clone {
-      position: absolute;
-      font-size: 18px;
-      padding: 15px 25px;
-      background-color: #f44336;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <h1>haha i miss you, please forgive me?</h1>
-    <button id="yesBtn">yes, ofc i will youre the best</button>
-    <button id="noBtn"> no >:( </button>
+    <h1>haha i miss you, please forgive me</h1>
+    <button id="yesBtn">yes ofc i will!</button>
+    <button id="noBtn">no >:(</button>
   </div>
 
   <script>
     let noBtn = document.getElementById("noBtn");
     let yesBtn = document.getElementById("yesBtn");
 
-    let displacementCount = 0; // Track how many times the "No" button has been displaced
-    let originalBtnPos = { x: noBtn.offsetLeft, y: noBtn.offsetTop };
-    let angleIncrement = 15; // The angle change for each new clone around the original button
-    let radius = 100; // Radius around the original button for clones to appear
+    let swapping = true;
 
-    // Get Yes button's position to avoid overlap
-    let yesBtnRect = yesBtn.getBoundingClientRect();
-
-    // Function to create clones around the original button
-    function createClone(x, y) {
-      let clone = document.createElement("button");
-      clone.classList.add("no-clone");
-      clone.innerHTML = "no >:(";
-
-      // Create a random angle around the original button
-      let randomAngle = Math.random() * Math.PI * 2;
-
-      // Calculate position of the clone
-      let cloneX = x + radius * Math.cos(randomAngle);
-      let cloneY = y + radius * Math.sin(randomAngle);
-
-      // Avoid overlapping with the "Yes" button
-      while (cloneX < yesBtnRect.right && cloneX > yesBtnRect.left &&
-             cloneY < yesBtnRect.bottom && cloneY > yesBtnRect.top) {
-        randomAngle = Math.random() * Math.PI * 2; // Get a new angle
-        cloneX = x + radius * Math.cos(randomAngle);
-        cloneY = y + radius * Math.sin(randomAngle);
-      }
-
-      // Set the position of the clone button
-      clone.style.left = cloneX + "px";
-      clone.style.top = cloneY + "px";
-
-      document.body.appendChild(clone);
+    // Function to swap positions of "yes" and "no" buttons
+    function swapPositions() {
+      let tempX = noBtn.style.left;
+      let tempY = noBtn.style.top;
+      noBtn.style.left = yesBtn.style.left;
+      noBtn.style.top = yesBtn.style.top;
+      yesBtn.style.left = tempX;
+      yesBtn.style.top = tempY;
     }
 
-    // Move the "No" button and start creating clones after a couple of displacements
     noBtn.addEventListener("click", () => {
-      displacementCount++;
-
-      // Move the "No" button to a random position
-      let randomX = Math.floor(Math.random() * (window.innerWidth - noBtn.offsetWidth));
-      let randomY = Math.floor(Math.random() * (window.innerHeight - noBtn.offsetHeight));
-      noBtn.style.position = "absolute";
-      noBtn.style.left = randomX + "px";
-      noBtn.style.top = randomY + "px";
-
-      originalBtnPos = { x: randomX, y: randomY }; // Update the original position
-
-      // Start creating clones after 3 displacements
-      if (displacementCount >= 5) {
-        createClone(originalBtnPos.x, originalBtnPos.y); // Create a new clone around the original button
+      if (swapping) {
+        swapPositions(); // Swap positions every time the "no" button is clicked
       }
     });
 
     yesBtn.addEventListener("click", () => {
-      alert("haha thank you for clicking yes, text me haha my number is 0423163776 *wink* see you soon handsome hahahaha");
+      alert("haha thanks for forgiving me, text me? 0423163776 *wink wink*");
+      swapping = false; // Stop swapping once "yes" is clicked
     });
   </script>
 </body>
