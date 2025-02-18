@@ -14,7 +14,6 @@
       background-color: #f0f0f0;
       margin: 0;
       font-family: Arial, sans-serif;
-      position: relative;
     }
     
     /* Container for centering the content */
@@ -23,11 +22,18 @@
       position: relative;
     }
     
+    /* Flex container for buttons */
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px; /* Space between the buttons */
+      position: relative;
+    }
+    
     /* Common button styles */
     button {
       font-size: 18px;
       padding: 15px 25px;
-      margin: 10px;
       border: none;
       cursor: pointer;
       border-radius: 5px;
@@ -38,18 +44,12 @@
     #yesBtn {
       background-color: #4CAF50;
       color: white;
-      position: absolute; /* Positioning the buttons absolutely */
-      left: 20px; /* Initial position of Yes button */
-      top: 20px;  /* Initial position of Yes button */
     }
     
     /* No button style */
     #noBtn {
       background-color: #f44336;
       color: white;
-      position: absolute; /* Positioning the buttons absolutely */
-      left: 200px; /* Initial position of No button */
-      top: 20px;  /* Initial position of No button */
     }
     
   </style>
@@ -58,8 +58,10 @@
 
   <div class="container">
     <h1>haha i miss you please forgive me?</h1>
-    <button id="yesBtn">yes of course i will, you're the best!</button>
-    <button id="noBtn">no >:(</button>
+    <div class="buttons">
+      <button id="yesBtn">yes of course i will, you're the best!</button>
+      <button id="noBtn">no >:(</button>
+    </div>
   </div>
 
   <script>
@@ -70,12 +72,9 @@
 
     // Function to swap positions of "yes" and "no" buttons
     function swapPositions() {
-      let tempX = noBtn.style.left;
-      let tempY = noBtn.style.top;
-      noBtn.style.left = yesBtn.style.left;
-      noBtn.style.top = yesBtn.style.top;
-      yesBtn.style.left = tempX;
-      yesBtn.style.top = tempY;
+      let tempX = noBtn.style.order;
+      noBtn.style.order = yesBtn.style.order;
+      yesBtn.style.order = tempX;
     }
 
     noBtn.addEventListener("click", () => {
