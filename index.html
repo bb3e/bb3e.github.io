@@ -15,21 +15,22 @@
       margin: 0;
       font-family: Arial, sans-serif;
     }
-    
+
     /* Container for centering the content */
     .container {
       text-align: center;
       position: relative;
+      width: 300px; /* Set a fixed width to contain buttons */
     }
-    
-    /* Flex container for buttons */
+
+    /* Flexbox container for buttons */
     .buttons {
       display: flex;
-      justify-content: center;
-      gap: 20px; /* Space between the buttons */
+      justify-content: space-between; /* Space the buttons apart */
+      gap: 20px;
       position: relative;
     }
-    
+
     /* Common button styles */
     button {
       font-size: 18px;
@@ -38,20 +39,21 @@
       cursor: pointer;
       border-radius: 5px;
       transition: transform 0.3s ease;
+      position: relative; /* Keep the buttons positioned relative to the container */
     }
-    
+
     /* Yes button style */
     #yesBtn {
       background-color: #4CAF50;
       color: white;
     }
-    
+
     /* No button style */
     #noBtn {
       background-color: #f44336;
       color: white;
     }
-    
+
   </style>
 </head>
 <body>
@@ -70,22 +72,27 @@
 
     let swapping = true;
 
-    // Function to swap positions of "yes" and "no" buttons
+    // Function to swap positions of "Yes" and "No" buttons
     function swapPositions() {
-      let tempX = noBtn.style.order;
-      noBtn.style.order = yesBtn.style.order;
-      yesBtn.style.order = tempX;
+      // Get the current positions using getBoundingClientRect
+      let yesBtnRect = yesBtn.getBoundingClientRect();
+      let noBtnRect = noBtn.getBoundingClientRect();
+
+      // Swap their positions by changing the 'order' property in flexbox
+      let temp = yesBtn.style.order;
+      yesBtn.style.order = noBtn.style.order;
+      noBtn.style.order = temp;
     }
 
     noBtn.addEventListener("click", () => {
       if (swapping) {
-        swapPositions(); // Swap positions every time the "no" button is clicked
+        swapPositions(); // Swap positions every time the "No" button is clicked
       }
     });
 
     yesBtn.addEventListener("click", () => {
       alert("haha thanks for forgiving me, text me? 0423163776 *wink wink*");
-      swapping = false; // Stop swapping once "yes" is clicked
+      swapping = false; // Stop swapping once "Yes" is clicked
     });
   </script>
 </body>
