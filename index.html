@@ -20,8 +20,8 @@
     .container {
       text-align: center;
       position: relative;
-      width: 400px; /* Set a fixed width for the container */
-      height: 100px; /* Ensure the container has enough space for both buttons */
+      width: 400px; /* Set a fixed width to contain buttons */
+      height: 100px; /* Ensure enough space for both buttons */
     }
 
     /* Common button styles */
@@ -32,14 +32,14 @@
       cursor: pointer;
       border-radius: 5px;
       transition: transform 0.3s ease;
-      position: absolute; /* Make the buttons absolutely positioned */
+      position: absolute; /* Positioning buttons absolutely */
     }
 
     /* Yes button style */
     #yesBtn {
       background-color: #4CAF50;
       color: white;
-      left: 20px; /* Initial position of Yes button */
+      left: 0px; /* Initial position of Yes button */
       top: 20px;  /* Initial position of Yes button */
     }
 
@@ -65,34 +65,30 @@
     let noBtn = document.getElementById("noBtn");
     let yesBtn = document.getElementById("yesBtn");
 
-    let swapping = true;
+    let swapping = true; // Flag to control swapping
 
-    // Function to swap positions of "Yes" and "No" buttons
+    // Function to swap positions of the "Yes" and "No" buttons
     function swapPositions() {
-      // Get the current positions of the buttons
-      let yesBtnRect = yesBtn.getBoundingClientRect();
-      let noBtnRect = noBtn.getBoundingClientRect();
+      // Get the current position of each button
+      let yesBtnPosition = yesBtn.getBoundingClientRect();
+      let noBtnPosition = noBtn.getBoundingClientRect();
 
-      // Swap their left position
-      let tempLeft = yesBtn.style.left;
-      yesBtn.style.left = noBtn.style.left;
-      noBtn.style.left = tempLeft;
-
-      // Swap their top position (just in case if needed for further tweaks)
-      let tempTop = yesBtn.style.top;
-      yesBtn.style.top = noBtn.style.top;
-      noBtn.style.top = tempTop;
+      // Swap positions by modifying their 'left' style attributes
+      yesBtn.style.left = `${noBtnPosition.left - 20}px`; // Adjust to the new left position
+      noBtn.style.left = `${yesBtnPosition.left - 20}px`; // Adjust to the new left position
     }
 
+    // When "No" button is clicked, swap positions
     noBtn.addEventListener("click", () => {
       if (swapping) {
-        swapPositions(); // Swap positions every time the "No" button is clicked
+        swapPositions(); // Swap positions when "No" is clicked
       }
     });
 
+    // When "Yes" button is clicked, stop swapping and show alert
     yesBtn.addEventListener("click", () => {
       alert("haha thanks for forgiving me, text me? 0423163776 *wink wink*");
-      swapping = false; // Stop swapping once "Yes" is clicked
+      swapping = false; // Stop swapping after "Yes" is clicked
     });
   </script>
 </body>
