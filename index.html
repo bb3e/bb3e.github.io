@@ -20,15 +20,8 @@
     .container {
       text-align: center;
       position: relative;
-      width: 300px; /* Set a fixed width to contain buttons */
-    }
-
-    /* Flexbox container for buttons */
-    .buttons {
-      display: flex;
-      justify-content: space-between; /* Space the buttons apart */
-      gap: 20px;
-      position: relative;
+      width: 400px; /* Set a fixed width for the container */
+      height: 100px; /* Ensure the container has enough space for both buttons */
     }
 
     /* Common button styles */
@@ -39,19 +32,23 @@
       cursor: pointer;
       border-radius: 5px;
       transition: transform 0.3s ease;
-      position: relative; /* Keep the buttons positioned relative to the container */
+      position: absolute; /* Make the buttons absolutely positioned */
     }
 
     /* Yes button style */
     #yesBtn {
       background-color: #4CAF50;
       color: white;
+      left: 20px; /* Initial position of Yes button */
+      top: 20px;  /* Initial position of Yes button */
     }
 
     /* No button style */
     #noBtn {
       background-color: #f44336;
       color: white;
+      left: 200px; /* Initial position of No button */
+      top: 20px;  /* Initial position of No button */
     }
 
   </style>
@@ -60,10 +57,8 @@
 
   <div class="container">
     <h1>haha i miss you please forgive me?</h1>
-    <div class="buttons">
-      <button id="yesBtn">yes of course i will, you're the best!</button>
-      <button id="noBtn">no >:(</button>
-    </div>
+    <button id="yesBtn">yes of course i will, you're the best!</button>
+    <button id="noBtn">no >:(</button>
   </div>
 
   <script>
@@ -74,14 +69,19 @@
 
     // Function to swap positions of "Yes" and "No" buttons
     function swapPositions() {
-      // Get the current positions using getBoundingClientRect
+      // Get the current positions of the buttons
       let yesBtnRect = yesBtn.getBoundingClientRect();
       let noBtnRect = noBtn.getBoundingClientRect();
 
-      // Swap their positions by changing the 'order' property in flexbox
-      let temp = yesBtn.style.order;
-      yesBtn.style.order = noBtn.style.order;
-      noBtn.style.order = temp;
+      // Swap their left position
+      let tempLeft = yesBtn.style.left;
+      yesBtn.style.left = noBtn.style.left;
+      noBtn.style.left = tempLeft;
+
+      // Swap their top position (just in case if needed for further tweaks)
+      let tempTop = yesBtn.style.top;
+      yesBtn.style.top = noBtn.style.top;
+      noBtn.style.top = tempTop;
     }
 
     noBtn.addEventListener("click", () => {
