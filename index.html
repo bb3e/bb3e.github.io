@@ -20,7 +20,7 @@
     .container {
       text-align: center;
       position: relative;
-      width: 400px; /* Set a fixed width to contain buttons */
+      width: 400px; /* Set a fixed width for the container */
       height: 100px; /* Ensure enough space for both buttons */
     }
 
@@ -32,7 +32,7 @@
       cursor: pointer;
       border-radius: 5px;
       transition: transform 0.3s ease;
-      position: absolute; /* Positioning buttons absolutely */
+      position: absolute; /* Buttons will be absolutely positioned */
     }
 
     /* Yes button style */
@@ -69,17 +69,13 @@
 
     // Function to swap positions of the "Yes" and "No" buttons
     function swapPositions() {
-      // Get current position of each button
-      let yesBtnPosition = yesBtn.getBoundingClientRect();
-      let noBtnPosition = noBtn.getBoundingClientRect();
+      // Get the current left position of both buttons
+      let yesLeft = yesBtn.style.left;
+      let noLeft = noBtn.style.left;
 
-      // Calculate the new left positions to swap them correctly
-      let yesBtnLeft = yesBtnPosition.left;
-      let noBtnLeft = noBtnPosition.left;
-
-      // Swap positions using the calculated left values
-      yesBtn.style.left = `${noBtnLeft - 20}px`; // Shift Yes button to No button's position
-      noBtn.style.left = `${yesBtnLeft - 20}px`; // Shift No button to Yes button's position
+      // Swap positions by adjusting the 'left' style properties
+      yesBtn.style.left = noLeft;
+      noBtn.style.left = yesLeft;
     }
 
     // When "No" button is clicked, swap positions
@@ -97,3 +93,4 @@
   </script>
 </body>
 </html>
+
