@@ -69,13 +69,17 @@
 
     // Function to swap positions of the "Yes" and "No" buttons
     function swapPositions() {
-      // Get the current position of each button
+      // Get current position of each button
       let yesBtnPosition = yesBtn.getBoundingClientRect();
       let noBtnPosition = noBtn.getBoundingClientRect();
 
-      // Swap positions by modifying their 'left' style attributes
-      yesBtn.style.left = `${noBtnPosition.left - 20}px`; // Adjust to the new left position
-      noBtn.style.left = `${yesBtnPosition.left - 20}px`; // Adjust to the new left position
+      // Calculate the new left positions to swap them correctly
+      let yesBtnLeft = yesBtnPosition.left;
+      let noBtnLeft = noBtnPosition.left;
+
+      // Swap positions using the calculated left values
+      yesBtn.style.left = `${noBtnLeft - 20}px`; // Shift Yes button to No button's position
+      noBtn.style.left = `${yesBtnLeft - 20}px`; // Shift No button to Yes button's position
     }
 
     // When "No" button is clicked, swap positions
