@@ -15,6 +15,7 @@
       font-family: Arial, sans-serif;
     }
     .container {
+      position: relative; /* Added to allow absolute positioning of buttons */
       text-align: center;
     }
     button {
@@ -23,14 +24,20 @@
       margin: 10px;
       border: none;
       cursor: pointer;
+      position: absolute; /* Changed to absolute to enable position swapping */
     }
     #yesBtn {
       background-color: #4CAF50;
       color: white;
+      left: 50%; /* Centering the button */
+      transform: translateX(-50%); /* Centering adjustment */
     }
     #noBtn {
       background-color: #f44336;
       color: white;
+      left: 50%; /* Centering the button */
+      transform: translateX(-50%); /* Centering adjustment */
+      top: 60px; /* Positioning the "no" button below the "yes" button */
     }
   </style>
 </head>
@@ -50,12 +57,12 @@
 
     // Function to swap positions of "yes" and "no" buttons
     function swapPositions() {
-      let tempX = noBtn.style.left;
-      let tempY = noBtn.style.top;
-      noBtn.style.left = yesBtn.style.left;
-      noBtn.style.top = yesBtn.style.top;
-      yesBtn.style.left = tempX;
-      yesBtn.style.top = tempY;
+      const yesBtnRect = yesBtn.getBoundingClientRect();
+      const noBtnRect = noBtn.getBoundingClientRect();
+
+      // Swap the positions using style properties
+      yesBtn.style.top = `${noBtnRect.top - yesBtnRect.height}px`;
+      noBtn.style.top = `${yesBtnRect.top}px`;
     }
 
     noBtn.addEventListener("click", () => {
@@ -71,4 +78,3 @@
   </script>
 </body>
 </html>
-
